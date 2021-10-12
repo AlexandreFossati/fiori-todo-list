@@ -1,0 +1,35 @@
+<mvc:View
+    controllerName="fossati.todos.controller.Todos"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+	<App id="app">
+		<Page id="page" title="{i18n>title}">
+			<HBox renderType="Bare" class="sapUiSmallMargin" alignItems="Center" justifyContent="Center">
+				<Title class="sapUiMediumMarginEnd" text="Enter a new task:" />
+				<HBox>
+					<Input width="30rem" class="sapUiTinyMarginEnd" value="{/newActivity}"/>
+					<Button icon="sap-icon://add" class="sapUiTinyMarginEnd" press="addActivity"/>
+				</HBox>
+			</HBox>
+			<List items="{todos>/}">
+				<items>
+					<CustomListItem>
+						<HBox renderType="Bare" class="sapUiSmallMargin" alignItems="Center" justifyContent="SpaceBetween">
+							<HBox>
+								<Text text="{todos>activity}" visible="{= !${todos>isOnEditMode} }"/>
+								<Input value="{todos>activity}" width="30rem" visible="{todos>isOnEditMode}" class="sapUiTinyMarginEnd"/>
+								<Button icon="sap-icon://accept" type="Success" class="sapUiTinyMarginEnd" press="confirmChange" visible="{todos>isOnEditMode}"/>
+							</HBox>
+							<HBox>
+								<Button icon="sap-icon://edit" visible="{= !${todos>isOnEditMode} }" class="sapUiTinyMarginEnd" press="edit"/>
+								<Button icon="sap-icon://delete" type="Reject" press="delete"/>
+							</HBox>
+						</HBox>
+					</CustomListItem>
+				</items>
+			</List>
+		</Page>
+	</App>
+</mvc:View>
